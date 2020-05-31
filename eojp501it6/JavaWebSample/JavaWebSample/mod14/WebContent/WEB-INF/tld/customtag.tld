@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+     web-jsptaglibrary_2_1.xsd">
+    <tlib-version>1.0</tlib-version>
+    <short-name>custom tag</short-name>
+    <uri>http://www.gjun.com.tw/simple</uri>
+	<tag>
+		<!-- 說明 -->
+		<description>打招呼</description>
+		<!-- 自訂標籤名 -->
+		<name>hello</name>
+		<!-- Tag Handler類別 -->
+		<tag-class>com.gjun.tag.HelloTag</tag-class>
+		<!-- 標籤採用空元素架構 -->
+		<body-context>empty</body-context>
+	</tag>
+	
+	<!-- MsgHelloTag -->
+	<tag>
+		<!-- 說明 -->
+		<description>具有參數傳遞的打招呼</description>
+		<!-- 自訂標籤名 -->
+		<name>hellomsg</name>
+		<tag-class>com.gjun.tag.MsgHelloTag</tag-class>
+		<body-context>empty</body-context>
+		<attribute>
+			 <name>message</name>
+		      <required>false</required>
+		      <type>java.util.Boolean</type>
+		      <rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>   
+	
+	<!-- BodyTag demo -->
+	<tag>
+		<!-- 說明 -->
+		<description>具有參數傳遞BodyTag</description>
+		<!-- 自訂標籤名 -->
+		<name>mybody</name>
+		<tag-class>com.gjun.tag.MyBodyTagHandler</tag-class>
+		<body-context>JSP</body-context>
+		<attribute>
+			 <name>message</name>
+		      <required>true</required>
+		      <type>java.util.Boolean</type>
+		      <rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<!-- 說明 -->
+		<description>具有參數傳遞BodyTag</description>
+		<!-- 自訂標籤名 -->
+		<name>mybody2</name>
+		<tag-class>com.gjun.tag.MyBodyTagHandler2</tag-class>
+		<body-context>JSP</body-context>
+		<attribute>
+			 <name>message</name>
+		      <required>true</required>
+		      <type>java.util.Boolean</type>
+		      <rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
+	<!-- SimpleTagSupport Handler -->
+	<tag>
+		<name>img</name>
+		<tag-class>com.gjun.tag.MySimpleTagHandler</tag-class>
+		<body-content>empty</body-content>
+		<description>Display Image</description>
+		<attribute>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>showBorder</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>showUrl</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+	</tag>
+	
+	<!-- BodyTagSupport應用 -->
+	 <tag>
+	  <name>stringToUpper</name>
+	  <tag-class>com.gjun.tag.MyBodyTagSupportHandler</tag-class>
+	  <bodycontent>JSP</bodycontent>
+	  <info>轉換body內容為大寫</info>
+   </tag>
+</taglib>    

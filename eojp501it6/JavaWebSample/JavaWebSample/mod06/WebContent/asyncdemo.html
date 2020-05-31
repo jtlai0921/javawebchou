@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>非同步處理-即時資料</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript">
+        var count = 0;
+        function asyncProcess(ms, tagName) {   
+        	// 呼叫次數
+            document.getElementById('count').innerHTML = ++count;
+            var xhr; 
+            if(window.XMLHttpRequest) {
+                xhr = new XMLHttpRequest(); //建構XMLHttpRequest物件 進行Aajx用
+            }
+           	//Ajax callback呼喚後端的async.view           
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4) {
+                    if(xhr.status == 200) {
+                    // 即時資料
+                        document.getElementById(tagName)
+                                      .innerHTML = xhr.responseText; //將回應資料送至標籤id tagName
+                        asyncUpdate(ms, tagName); //遞迴呼叫
+                    }
+                }
+            };
+			//採用Http Request Method-GET，指向撰寫的的非同步處理的Servlet
+            xhr.open('GET', 'async.view?ms='+ ms + '&timestamp=' + new Date().getTime());
+            xhr.send(); //正式執行XMLHttpRequest 進行AJAX非同步呼喚與處理
+        }
+    </script>
+  </head>
+  <body>
+    <input type="button" value="5秒" onclick="asyncProcess(5000, 'data_3')">
+    <input type="button" value="1秒" onclick="asyncProcess(1000, 'data_1')">
+    <input type="button" value="0.1秒" onclick="asyncProcess(100, 'data_01')">
+    <p>
+    即時資料(5秒): <span id="data_3">0</span><p>
+    即時資料(1秒): <span id="data_1">0</span><p>
+    即時資料(0.1秒): <span id="data_01">0</span><p>
+    呼叫次數: <span id="count">0</span><p>
+  </body>
+</html> 

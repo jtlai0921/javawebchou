@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <display-name>mod04</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <!-- 網站系統初始化參數 -->
+  <context-param>
+  	<param-name>driverClassName</param-name>
+  <param-value>com.mysql.cj.jdbc.Driver</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>url</param-name>
+  	<param-value>jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>username</param-name>
+  	<param-value>root</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>password</param-name>
+  	<param-value>1111</param-value>
+  </context-param>
+  <!-- 佈署具有初始化參數的Servlet -->
+  <servlet>
+  	<servlet-name>items</servlet-name>
+  	<servlet-class>com.gjun.view.ItemsServlet</servlet-class>
+  	<init-param>
+  		<param-name>items</param-name>
+  		<param-value>Java,Python,C#,VB</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>items</servlet-name>
+  	<url-pattern>/items.view</url-pattern>
+  </servlet-mapping>
+  <!-- 部署Listener -->
+  <listener>
+  	<listener-class>com.gjun.listener.ApplicationHandler</listener-class>
+  </listener>
+</web-app>

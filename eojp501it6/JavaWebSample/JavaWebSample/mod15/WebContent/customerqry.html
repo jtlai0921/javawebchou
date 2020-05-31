@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>客戶資料查詢</title>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script>
+	//使用jquery Selector-選擇文件下載瀏覽起引發事件
+	$(document).ready(
+		function(){
+			$('#result').hide();
+			//參照button物件
+			$('#btnQuery').click(
+				function(){
+					//參照文字輸入方塊
+					var key=$('#customerid').val();
+					var urlString="http://localhost:8080/mod15/v1/customers/customersqry/id/"+key+"/rawdata";
+					//設定物件(settings)
+					var params={
+						url:urlString,
+						type:'GET',
+						success:function(result,status,xhr){
+							$('#cid').text(result.customer_id);
+							$('#firstname').text(result.first_name);
+							$('#lastname').text(result.last_name);
+							$('#result').show();
+						},
+						error:function(xhr,status,error){
+							alert(error);
+						}
+					}
+					$.ajax(params);
+				}		
+			);
+		}		
+	);
+</script>
+</head>
+<body>
+<fieldset>
+	<legend>客戶資料查詢</legend>
+	<div>客戶編號</div>
+	<input type="text" id="customerid"/>
+	<input type="button" value="查詢" id="btnQuery"/>
+</fieldset>
+<fieldset id="result">
+	<legend>查詢結果</legend>
+	<table border="1">
+		<tr>
+			<td>客戶編號</td>
+			<td id="cid"></td>
+		</tr>
+		<tr>
+			<td>First Name</td>
+			<td id="firstname"></td>
+		</tr>
+		<tr>
+			<td>Last Name</td>
+			<td id="lastname"></td>
+		</tr>
+		
+	</table>
+</fieldset>
+</body>
+</html>

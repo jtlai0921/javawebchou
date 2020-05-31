@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <Resource id="mysqlRS" aliases="sakila" type="DataSource">
+    JdbcDriver = com.mysql.cj.jdbc.Driver
+    JdbcUrl = jdbc:mysql://localhost:3306/sakila?serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true
+    UserName = root
+    Password = 1111   
+  </Resource>
+</resources>
